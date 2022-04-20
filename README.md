@@ -4,7 +4,8 @@ Finalproject oop <br>
 ใช้ในการบันททึกและคำนวณข้อมูลเบื้ยงต้นในการเช่า ปืนBBgun <br>
 ### Class Diagram
 ```mermaid
-classDiagram 
+classDiagram
+direction RL
   Form2 <|-- BBgun
   Form1 <|-- Form2
   BBgun <|-- BBgunFile
@@ -14,6 +15,18 @@ class Form1{
   }
 class Form2{
   -BBgun
+  -P1
+  -A1
+  -Sum
+  -Total
+  -As1
+  -As2
+  -As3
+  -As4
+  -As5
+  -K
+  -B
+  -T
   calculate()
   add()
   }
@@ -25,7 +38,13 @@ class BBgun{
   -price
   -date
   -accessories
-  add()
+  getName()
+  getNum()
+  getType()
+  getAmount()
+  getPrice()
+  getDate()
+  getAccessories()
 }
 class BBgunFile{
   SaveFile()
