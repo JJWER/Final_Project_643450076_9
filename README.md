@@ -8,7 +8,6 @@ classDiagram
 direction RL
   Form2 <|-- BBgun
   Form1 <|-- Form2
-  BBgun <|-- BBgunFile
 class Form1{
   login()
   clear()
@@ -29,6 +28,9 @@ class Form2{
   -T
   calculate()
   add()
+  Clear()
+  Close()
+  SaveFile()
   }
 class BBgun{
   -name
@@ -45,10 +47,6 @@ class BBgun{
   getPrice()
   getDate()
   getAccessories()
-}
-class BBgunFile{
-  SaveFile()
-  OpenFile()
 }
 ```
 ## นายธนาธิป เตชะ
