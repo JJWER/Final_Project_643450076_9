@@ -53,7 +53,6 @@ namespace Final_Project
             textBox1.Clear();
             textBox2.Clear();
             textBox1.Focus();
-
         }
     }
 }

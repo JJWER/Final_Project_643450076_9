@@ -31,7 +31,6 @@ namespace Final_Project
 
                 }
             }
-
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -63,10 +62,9 @@ namespace Final_Project
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-            
-            int P1, A1, Sum, Total ;
-            int As1, As2, As3, As4, As5;
+        {            
+            int P1, A1, Sum, Total ; // P1 = ราคา A1 = จำนวน Sum = จำนวนปืนที่เช่าทั้งหมด Total = ปืนบวกอุปฏรณ์เสริม
+            int As1, As2, As3, As4, As5; // As1 - As5 = อุปกรณ์เสริม
             P1 = int.Parse(textBox3.Text);
             A1 = int.Parse(comboBox2.Text);
             Sum = P1 * A1;
@@ -99,13 +97,12 @@ namespace Final_Project
 
             Total = Sum + AsSum;
             textBox4.Text = Total.ToString();
-
         }
 
         private void textBox5_KeyDown(object sender, KeyEventArgs e)
         {
             int K, B, T;
-
+            // K = ราคารวม B = เงินที่จ่าย T = เงินทอน
             if (e.KeyCode == Keys.Enter)
             {
                 if (textBox5.Text == "")
@@ -152,40 +149,15 @@ namespace Final_Project
             textBox1.Focus();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSV (*.csv)|*.csv";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string[] readAllLine = File.ReadAllLines(openFileDialog.FileName);
-                string readAllText = File.ReadAllText(openFileDialog.FileName);
-
-                for (int i = 0; i < readAllLine.Length; i++)
-                {
-                    string BBgunRAW = readAllLine[i];
-                    string[] BBgunSplited = BBgunRAW.Split(',');
-                    BBgun bbgunSweet = new BBgun(BBgunSplited[0], BBgunSplited[1], BBgunSplited[2], 
-                        BBgunSplited[3], BBgunSplited[4], BBgunSplited[5], BBgunSplited[6]);
-                    addDataToGridView("name", "number", "type", "amount","price","date", "accessories");
-                }
-            }
-        }
-        void addDataToGridView(string name, string num, string type, 
-            string amount, string price, string date, string accessories)
-        {
-            this.dataGridView1.Rows.Add(new string[] { name, num, type, amount, price, date, accessories });
-        }
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filepath = string.Empty;
             if (dataGridView1.Rows.Count > 0)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV(*.csv)|*.csv";
+                SaveFileDialog SFD = new SaveFileDialog();
+                SFD.Filter = "CSV(*.csv)|*.csv";
                 bool fileError = false;
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (SFD.ShowDialog() == DialogResult.OK)
                 {
                     if (!fileError)
                     {
@@ -206,11 +178,11 @@ namespace Final_Project
                                     outputCSV[i] += dataGridView1.Rows[i - 1].Cells[j].Value.ToString() + ",";
                                 }
                             }
-                            File.WriteAllLines(sfd.FileName, outputCSV, Encoding.UTF8);
+                            File.WriteAllLines(SFD.FileName, outputCSV, Encoding.UTF8);
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error :" + ex.Message);
+                            MessageBox.Show("ผิดพลาด :" + ex.Message);
                         }
                     }
                 }
